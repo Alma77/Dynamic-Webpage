@@ -1,0 +1,62 @@
+﻿@model IEnumerable<HW_06.Models.BlogPost>
+@using Microsoft.AspNetCore.Authorization
+@using HW_06.Services
+@inject IAuthorizationService Authorization
+@{
+    var canEdit = (await Authorization.AuthorizeAsync(User, MyIdentityDataService.Policy_Edit)).Succeeded;
+    var canDelete = (await Authorization.AuthorizeAsync(User, MyIdentityDataService.Policy_Delete)).Succeeded;
+    var canAdd = (await Authorization.AuthorizeAsync(User, MyIdentityDataService.Policy_Add)).Succeeded;
+}
+@{
+    ViewData["Title"] = "Index";
+}
+
+<body>
+    <div class="main">
+        <h1>Blog Posts</h1>
+
+        @if (canAdd)
+        {
+            <div><a asp-action="Post" id="createButton">Create New Post</a></div>
+            <hr />
+        }
+
+        @foreach (var item in Model)
+        {
+            <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+
+            <p class="post">@Html.DisplayFor(modelItem => item.Body)</p>
+
+            <h4>Comments</h4>
+            <p>
+                @foreach (var comment in item.Comments)
+                {
+                    <div class="comment">
+                        <h5>@Html.DisplayFor(modelComment => comment.UserName):</h5>
+                        @Html.DisplayFor(modelComment => comment.Body)
+                        <hr />
+                    </div>
+                }
+            </p>
+
+            <div>
+                @if (canEdit)
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit | </a>
+                }
+                @if (canDelete)
+                {
+                    <a asp-action="Delete" asp-route-id="@item.Id"> Delete |</a>
+                }
+            </div>
+
+            <form asp-action="Comment" method="post">
+                <p><input type="text" id="userName" name="userName" placeholder="User Name" /></p>
+                <p><textarea name="commentBody" rows="2" cols="40" placeholder="Write your comment here..."></textarea></p>
+                <input type="hidden" value="@item.Id" name="postId" />
+                <button type="submit">Comment</button>
+            </form>
+        }
+    </div>
+    
+</body>

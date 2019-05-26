@@ -1,0 +1,155 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.fixed{
+    position: fixed;
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+button{
+    background-color: blue;
+    padding: 2px;
+    color: white;
+}
+
+.post {
+    font-size: 20px;
+}
+
+.page{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.main{
+    background-color: whitesmoke;
+    padding: 2em;
+    margin-top: -.5em;
+    box-shadow: 10px 20px 15px #0a0909;
+    border-radius: 10px;
+}
+
+.comment{
+    padding-top: .5em;
+    font-size: 16px;
+}
+
+.quote {
+    font-style: italic;
+    text-align: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    background-color: whitesmoke;
+    padding-top: -3em;
+}
+
+.author {
+    text-align: center;
+}
+
+.pageBackground{
+    background-image: url(Background/star_wars.jpg);
+}
+
+.pageTitle {
+    font-family: 'Eras ITC';
+    border-bottom: solid 2px black;
+    font-size: 64px;
+}
+
+.pageBody {
+    font-size: 20px;
+    width: 60%;
+    margin-bottom: 5em;
+    margin-top: 1em;
+}
+
+.pageFooter{
+    font-size: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-top: solid 2px black;
+    padding-top: 2em;
+}
+
+.pageImage{
+    margin-bottom: 1em;
+}
+
+.pageQuote{
+    font-style: italic;
+    width: 250px;
+    height: 400px;
+    bottom: 10px;
+    right: 50px;
+    position: relative;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+        color: #FFF;
+    }
+}
+
+.dark{
+    background-color: #171616;
+    color: #e5e5e5;    
+}

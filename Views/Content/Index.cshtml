@@ -1,0 +1,81 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using HW_06.Services
+@inject IAuthorizationService Authorization
+
+@{
+    ViewData["Title"] = "Index";
+    var cmsPage = Context.Items["cmspage"] as CMSPage;
+    var page = Context.Items["cmspage"] as IEnumerable<CMSPage>;
+}
+
+@{
+    var canAdd = (await Authorization.AuthorizeAsync(User, MyIdentityDataService.Policy_Add)).Succeeded;
+    var canEdit = (await Authorization.AuthorizeAsync(User, MyIdentityDataService.Policy_Edit)).Succeeded;
+}
+<main class="main">
+    <header>
+        @if (cmsPage != null)
+        {
+            <h1 class="pageTitle">@cmsPage.Title</h1>
+
+
+            <table>
+                <tr>
+                    @if (canAdd)
+                    {
+                        <td><a asp-action="Create" id="createButton">Create New Page |  </a></td>
+                    }
+                    @if (canEdit)
+                    {
+                        <td><a asp-action="Update" asp-route-id="@cmsPage.Id">Edit Page</a></td>
+                    }
+                </tr>
+            </table>
+        }
+    </header>
+
+    <body>
+        @if (cmsPage != null)
+        {
+            <p>@ViewData["permalink"]</p>
+
+            <div class="page">
+                <p class="pageBody">@cmsPage.Body</p>
+
+                <p class="pageQuote">
+                    @if (cmsPage.Image != null)
+                    {
+                        <img src="/img/@cmsPage.Image" width="250" height="250" class="pageImage" />
+                    }
+                    @cmsPage.Quote
+                </p>
+            </div>
+
+            <p class="pageFooter">@cmsPage.Footer</p>
+        }
+        else
+        {
+            <div>
+                <h1 class="pageTitle">Example Pages</h1>
+
+                @if (canAdd)
+                {
+                    <table>
+                        <tr>
+                            <td><a asp-action="Create" id="createButton">Create New Webpage</a></td>
+                        </tr>
+                    </table>
+                }
+                <p>
+                    <h4>Go to any of these Webpages to get Started:</h4>
+                    <ul>
+                        <li><a href="https://localhost:5001/Content/jedi-order">Jedi Order</a></li>
+                        <li><a href="https://localhost:5001/Content/sith-empire">Sith Empire</a></li>
+                        <li><a href="https://localhost:5001/Content/mandalorian">Mandalorian</a></li>
+                    </ul>
+                </p>
+            </div>
+            
+        }
+    </body>
+</main>

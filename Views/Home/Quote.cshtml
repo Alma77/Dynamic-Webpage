@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Quote";
+    var quote = ViewData["Quotes"] as Quotes;
+}
+
+<div class="main">
+    <h1 class="text-center">Quote of the Day</h1>
+
+    <h4>
+        <p class="quote">@quote.Quote</p>
+        <p class="author">-@quote.Author </p>
+    </h4>
+</div>
+
